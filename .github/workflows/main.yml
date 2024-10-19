@@ -1,48 +1,33 @@
-name: itvlist
+name: IP Range Scan
 
 on:
   schedule:
-    - cron: '0 21 * * *'
-  push:
-    branches:
-      - main
+    - cron: '0 */6 * * *'  # 每6小时运行一次
+  workflow_dispatch:  # 允许手动触发
 
 jobs:
-  build:
+  scan:
     runs-on: ubuntu-latest
-    #runs-on: ubuntu-22.04@20240422.1.0
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-    
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.12.3'
+          python-version: '3.x'
 
       - name: Install dependencies
-        #run: pip install selenium==4.19.0 requests==2.31.0 futures==3.0.5 eventlet==0.36.1
-        run: pip install selenium requests futures eventlet
-
-      - name: Run itv_all
-        run: python ${{ github.workspace }}/itv_all.py
-
-      #- name: Run cctv
-        #run: python ${{ github.workspace }}/cctv.py
-        
-      #- name: Run weishi
-        #run: python ${{ github.workspace }}/weishi.py
-        
-      #- name: Run qita
-        #run: python ${{ github.workspace }}/qita.py
-        
-      - name: 提交更改
         run: |
-          git config --local user.email "ssili@126.com"
-          git config --local user.name "ssili126"
-          git add .
-          git commit *.txt -m "Add generated file"
-          git commit *.m3u -m "Add generated file"
-          #git pull --rebase
-          git push -f
+          pip install -r ips.txt
+
+      - name: Run IP scan
+        run: |
+          python itv_all.py
+
+      - name: Upload results
+        uses: actions/upload-artifact@v3
+        with:
+          name: ips
+          path: ips.txt
