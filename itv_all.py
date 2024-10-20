@@ -2,10 +2,10 @@ import os
 import socket
 
 # 定义要扫描的IP段（例如：192.168.1.1 - 192.168.1.255）
-ip_prefix = "14.16.34."  # 修改为你要扫描的IP段前缀
+ip_prefix = "120.234.49."  # 修改为你要扫描的IP段前缀
 start_ip = 1  # 开始IP
 end_ip = 255  # 结束IP
-port = 4022  # 检查的端口（例如HTTP端口）
+port = 7000  # 检查的端口（例如HTTP端口）
 
 # 输出文件路径
 output_file = "ips.txt"
