@@ -11,7 +11,7 @@ subnet_end = "113.83.255.255"
 ports = [6600, 5050, 5005, 8086, 8088, 8888, 9080, 8000, 9026, 3952, 9000, 9999, 5555, 4022, 7000]
 
 # 定义成功IP的文件
-successful_ips_file = "ips.txt"
+successful_ips_file = "udpxy_servers.txt"
 
 # 定义最大线程数
 max_threads = 200
