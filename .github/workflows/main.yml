@@ -1,4 +1,4 @@
-name: IP Range Scan
+name: IP Scan
 
 on:
   schedule:
