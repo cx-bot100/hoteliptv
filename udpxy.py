@@ -55,8 +55,8 @@ def scan_ip_range(start_ip, end_ip, port=4022, output_file="udpxy_servers.txt"):
 
 # 示例调用
 if __name__ == "__main__":
-    start_ip = "113.77.0.0"
-    end_ip = "113.80.255.255"
+    start_ip = "113.83.242.0"
+    end_ip = "113.83.242.255"
     port = 4022  # UDPXY的默认端口
     output_file = "udpxy_servers.txt"  # 输出文件
     scan_ip_range(start_ip, end_ip, port, output_file)
