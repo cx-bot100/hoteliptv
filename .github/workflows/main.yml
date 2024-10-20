@@ -20,14 +20,14 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r ips.txt
+          pip install -r udpxy_servers.txt
 
       - name: Run IP scan
         run: |
-          python zubo.py
+          python udpxy.py
 
       - name: Upload results
         uses: actions/upload-artifact@v3
         with:
-          name: ips
-          path: ips.txt
+          name: udpxy_servers
+          path: udpxy_servers.txt
