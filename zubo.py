@@ -18,7 +18,7 @@ max_threads = 200
 
 # 检查IP和端口的连通性
 def check_ip_port(ip, port):
-    url = f"http://{ip}:{port}/status"
+    url = f"http://{ip}:{port}/udp/239.77.0.251:5146"
     try:
         response = urllib.request.urlopen(url, timeout=0.3)
         if response.getcode() == 200:
