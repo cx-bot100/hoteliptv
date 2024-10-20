@@ -14,7 +14,7 @@ ports = [4022, 6600, 5050, 5005, 8086, 8088, 8888, 9080, 8000, 9026, 3952, 9000,
 successful_ips_file = "ss.txt"
 
 # 定义最大线程数
-max_threads = 10
+max_threads = 300
 
 # 检查IP和端口的连通性
 def check_ip_port(ip, port):
