@@ -12,6 +12,7 @@ ports = [4022]
 
 # 定义成功IP的文件
 successful_ips_file = "udpxy_servers.txt"
+output_file = "udpxy_servers.txt"  # 输出文件
 
 # 定义最大线程数
 max_threads = 200
