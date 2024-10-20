@@ -4,8 +4,8 @@ import threading
 import ipaddress
 
 # 定义子网的起始和结束IP地址
-subnet_start = "14.152.64.0"
-subnet_end = "14.152.79.255"
+subnet_start = "59.41.0.0"
+subnet_end = "59.42.255.255"
 
 # 定义要扫描的端口列表
 ports = [6600, 5050, 5005, 8086, 8088, 8888, 9080, 8000, 9026, 3952, 9000, 9999, 5555, 4022, 7000]
@@ -14,11 +14,11 @@ ports = [6600, 5050, 5005, 8086, 8088, 8888, 9080, 8000, 9026, 3952, 9000, 9999,
 successful_ips_file = "ips.txt"
 
 # 定义最大线程数
-max_threads = 10
+max_threads = 200
 
 # 检查IP和端口的连通性
 def check_ip_port(ip, port):
-    url = f"http://{ip}:{port}/udp/239.77.0.1:5146"
+    url = f"http://{ip}:{port}/status"
     try:
         response = urllib.request.urlopen(url, timeout=0.3)
         if response.getcode() == 200:
