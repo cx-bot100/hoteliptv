@@ -24,7 +24,7 @@ jobs:
 
       - name: Run IP scan
         run: |
-          python zubo.py
+          python udpxy.py
 
       - name: Upload results
         uses: actions/upload-artifact@v3
