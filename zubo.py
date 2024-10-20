@@ -22,7 +22,7 @@ def check_ip_port(ip, port):
     url = f"http://{ip}:{port}"
     try:
         response = urllib.request.urlopen(url, timeout=0.3)
-        if response.getcode() == 400:
+        if response.getcode() == 200:
             server_header = response.headers.get('Server')
             if server_header and 'udpxy' in server_header:
                 print(f"访问 {ip}:{port} 成功，Server: udpxy")
