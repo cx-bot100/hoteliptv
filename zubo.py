@@ -4,7 +4,7 @@ import threading
 import ipaddress
 
 # 定义子网的起始和结束IP地址
-subnet_start = "113.83.0.0"
+subnet_start = "113.83.240.0"
 subnet_end = "113.83.255.255"
 
 # 定义要扫描的端口列表
