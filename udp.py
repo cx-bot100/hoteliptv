@@ -14,22 +14,16 @@ for div in soup.find_all('div', class_='resultplus'):
     # 查找 <tba> 标签内的网址
     tba_content = div.find('tba')
     
-    # 提取 IP 地址或网址内容
-    if tab_content:
-        url_in_tab = tab_content.get_text(strip=True)
-        # 使用正则表达式匹配 IP 地址或网址
-        ip_address = re.findall(r'\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b', url_in_tab)
-        if ip_address:
-            results.append(f"大湾区卫视,{ip_address[0]}")
-        else:
-            results.append(f"大湾区卫视,{url_in_tab}")
-    
     if tba_content:
+        # 提取 tba 标签内的文本
         url_in_tba = tba_content.get_text(strip=True)
+        # 使用正则表达式匹配 IP 地址格式
         ip_address = re.findall(r'\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b', url_in_tba)
+        # 如果找到 IP 地址，按格式添加到结果列表中
         if ip_address:
             results.append(f"大湾区卫视,{ip_address[0]}")
         else:
+            # 如果没有 IP 地址，保存整个网址内容
             results.append(f"大湾区卫视,{url_in_tba}")
 
 # 保存结果到 key.txt 文件
