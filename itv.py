@@ -22,7 +22,7 @@ for url in urls:
         soup = BeautifulSoup(response.text, 'html.parser')
 
         # 查找所有class为'resultplus'的div元素
-        divs = soup.find_all('div', class_='gapeot')
+        divs = soup.find_all('div', class_='resultplus')
 
         # 提取包含http和https的IP地址
         for div in divs:
