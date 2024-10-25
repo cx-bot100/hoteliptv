@@ -23,7 +23,7 @@ for div in divs:
     ip_addresses.extend(matches)
 
 # 将结果写入key.txt文件，格式为“大湾区卫视,ip地址”
-with open('ss.txt', 'w') as file:
+with open('key.txt', 'w') as file:
     for ip in ip_addresses:
         file.write(f"大湾区卫视,{ip}\n")
 
