@@ -1,33 +1,34 @@
-name: IP Scan
+name: udp
 
 on:
   schedule:
-    - cron: '0 */6 * * *'  # 每6小时运行一次
+    - cron: '0 0 * * *'  # 每天运行一次，可以根据需要调整时间
   workflow_dispatch:  # 允许手动触发
 
 jobs:
-  scan:
+  scrape:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
 
-      - name: Install dependencies
-        run: |
-          pip install -r udpxy_servers.txt
+    - name: Install dependencies
+      run: |
+        pip install requests beautifulsoup4
 
-      - name: Run IP scan
-        run: |
-          python udp.py
+    - name: Run scraper
+      run: python udp.py
 
-      - name: Upload results
-        uses: actions/upload-artifact@v3
-        with:
-          name: udpxy_servers
-          path: udpxy_servers.txt
+    - name: Commit and push changes
+      run: |
+        git config --local user.name "cx-bot100"
+        git config --local user.email "3206868632@qq.com"
+        git add key.txt
+        git commit -m "Update key.txt with latest scrape data"
+        git push
