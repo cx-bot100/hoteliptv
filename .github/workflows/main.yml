@@ -23,12 +23,12 @@ jobs:
         pip install requests beautifulsoup4
 
     - name: Run scraper
-      run: python dwq.py
+      run: python itv.py
 
     - name: Commit and push changes
       run: |
         git config --local user.name "cx-bot100"
         git config --local user.email "3206868632@qq.com"
-        git add dwq.txt
-        git commit -m "Update dwq.txt with latest scrape data"
+        git add key.txt
+        git commit -m "Update key.txt with latest scrape data"
         git push
