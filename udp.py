@@ -2,26 +2,35 @@ import requests
 from bs4 import BeautifulSoup
 import re
 
-# 目标URL
-url = "http://tonkiang.us/?iqtv=%E5%A4%A7%E6%B9%BE%E5%8C%BA%E5%8D%AB%E8%A7%86"
-url = "http://tonkiang.us/?iqtv=%E5%A4%A7%E6%B9%BE%E5%8C%BA%E5%8D%AB%E8%A7%86%E9%AB%98%E6%B8%85"
+# 目标URL列表
+urls = [
+    "http://tonkiang.us/?iqtv=%E5%A4%A7%E6%B9%BE%E5%8C%BA%E5%8D%AB%E8%A7%86",
+    "http://tonkiang.us/?iqtv=%E5%A4%A7%E6%B9%BE%E5%8C%BA%E5%8D%AB%E8%A7%86%E9%AB%98%E6%B8%85"
+]
 
-# 发起请求
-response = requests.get(url)
-response.encoding = 'utf-8'
-
-# 解析网页内容
-soup = BeautifulSoup(response.text, 'html.parser')
-
-# 查找所有class为'resultplus'的div元素
-divs = soup.find_all('div', class_='resultplus')
-
-# 提取包含http和https的IP地址
+# 保存结果的列表
 ip_addresses = []
-for div in divs:
-    # 使用正则表达式匹配http或https开头的IP地址
-    matches = re.findall(r'http[s]?://[^\s]+', div.get_text())
-    ip_addresses.extend(matches)
+
+# 遍历每个URL
+for url in urls:
+    try:
+        # 发起请求
+        response = requests.get(url)
+        response.encoding = 'utf-8'
+
+        # 解析网页内容
+        soup = BeautifulSoup(response.text, 'html.parser')
+
+        # 查找所有class为'resultplus'的div元素
+        divs = soup.find_all('div', class_='resultplus')
+
+        # 提取包含http和https的IP地址
+        for div in divs:
+            matches = re.findall(r'http[s]?://[^\s]+', div.get_text())
+            ip_addresses.extend(matches)
+    
+    except Exception as e:
+        print(f"Failed to scrape {url} due to {e}")
 
 # 将结果写入key.txt文件，格式为“大湾区卫视,ip地址”
 with open('key.txt', 'w') as file:
