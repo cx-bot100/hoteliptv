@@ -1,4 +1,4 @@
-name: udp
+name: Scrape Data and Update
 
 on:
   schedule:
@@ -27,7 +27,7 @@ jobs:
 
     - name: Commit and push changes
       run: |
-        git config --local user.name "cx-bot100"
+        git config --local user.name "hoteliptv"
         git config --local user.email "3206868632@qq.com"
         git add key.txt
         git commit -m "Update key.txt with latest scrape data"
