@@ -9,7 +9,7 @@ urls = [
 ]
 
 # 发起请求
-response = requests.get(url)
+response = requests.get(urls)
 response.encoding = 'utf-8'
 
 # 解析网页内容
