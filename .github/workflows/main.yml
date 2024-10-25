@@ -2,7 +2,7 @@ name: main
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # 每天运行一次，可以根据需要调整时间
+    - cron: '0 */6 * * *'  # 每天运行一次，可以根据需要调整时间
   workflow_dispatch:  # 允许手动触发
 
 jobs:
@@ -23,12 +23,12 @@ jobs:
         pip install requests beautifulsoup4
 
     - name: Run scraper
-      run: python udp.py
+      run: python dwq.py
 
     - name: Commit and push changes
       run: |
         git config --local user.name "cx-bot100"
         git config --local user.email "3206868632@qq.com"
-        git add key.txt
-        git commit -m "Update key.txt with latest scrape data"
+        git add dwq.txt
+        git commit -m "Update dwq.txt with latest scrape data"
         git push
