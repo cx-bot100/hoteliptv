@@ -1,4 +1,4 @@
-name: Scrape Data and Update
+name: main
 
 on:
   schedule:
