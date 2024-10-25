@@ -7,13 +7,14 @@ response = requests.get(url)
 response.encoding = 'utf-8'  # 设置编码
 soup = BeautifulSoup(response.text, 'html.parser')
 
-# 查找所有包含 onclick=nliu 的元素
+# 查找所有包含 class="resultplus" 的 div 标签
 results = []
-for tag in soup.find_all(onclick=True):
-    if 'nliu' in tag['onclick']:
-        # 提取 IP 地址（假设 IP 地址在 onclick 字符串中）
-        ip_address = tag['onclick'].split('peotua')[-1].strip("()'")
-        results.append(f"大湾区卫视，{ip_address}")
+for div in soup.find_all('div', class_='resultplus'):
+    # 假设 <tab> 标签包含我们需要的 IP 地址
+    tab_content = div.find('tba')
+    if tab_content:
+        ip_address = tab_content.get_text(strip=True)
+        results.append(f"大湾区卫视,{ip_address}")
 
 # 保存结果到 key.txt 文件
 with open('key.txt', 'w', encoding='utf-8') as file:
