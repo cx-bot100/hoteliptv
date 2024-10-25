@@ -4,7 +4,7 @@ import re
 
 # 目标URL列表
 urls = [
-    "http://tonkiang.us/?iqtv=%E5%A4%A7%E6%B9%BE%E5%8C%BA%E5%8D%AB%E8%A7%86",
+    "http://www.foodieguide.com/iptvsearch/?s=%E7%BF%A1%E7%BF%A0%E5%8F%B0&l=eowuxJvaa8bre/oee/oOWPsA==",
     "http://www.foodieguide.com/iptvsearch/?s=%E7%BF%A1%E7%BF%A0%E5%8F%B0&l=eowuxJvaa8bre/oee/oOWPsA=="
 ]
 
