@@ -7,10 +7,10 @@ response = requests.get(url)
 response.encoding = 'utf-8'  # 设置编码
 soup = BeautifulSoup(response.text, 'html.parser')
 
-# 查找所有包含 onclick=peotua 的元素
+# 查找所有包含 onclick=nliu 的元素
 results = []
 for tag in soup.find_all(onclick=True):
-    if 'peotua' in tag['onclick']:
+    if 'nliu' in tag['onclick']:
         # 提取 IP 地址（假设 IP 地址在 onclick 字符串中）
         ip_address = tag['onclick'].split('peotua')[-1].strip("()'")
         results.append(f"大湾区卫视，{ip_address}")
