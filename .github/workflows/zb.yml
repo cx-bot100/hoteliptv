@@ -1,34 +1,33 @@
-name: zby
+name: Scrape
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # 每天运行一次，可以根据需要调整时间
-  workflow_dispatch:  # 允许手动触发
+    - cron: '0 */6 * * *'  # 每6小时运行一次（UTC时间）
+  workflow_dispatch:  # 手动触发
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.x'
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
 
-    - name: Install dependencies
-      run: |
-        pip install requests beautifulsoup4
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
 
-    - name: Run scraper
-      run: python zby.py
+      - name: Run Python script
+        run: python zby.py  # 确保脚本名与此处一致
 
-    - name: Commit and push changes
-      run: |
-        git config --local user.name "cx-bot100"
-        git config --local user.email "3206868632@qq.com"
-        git add zblink.txt
-        git commit -m "Update zblink.txt with latest scrape data"
-        git push
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'cx-bot100'
+          git config --global user.email '3206868632@qq.com'
+          git add zblink.txt
+          git commit -m "Update zblink.txt with latest validated IPs"
+          git push
