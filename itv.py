@@ -38,5 +38,6 @@ with open('key.txt', 'w', encoding='utf-8') as file:
     file.write('地方频道,#genre#\n')
     for ip in ip_addresses:
         file.write(f"大湾区卫视,{ip}\n")
+        file.write(f"广东珠江,{ip}\n")
 
 print(f"已提取 {len(ip_addresses)} 个IP地址，并保存到key.txt文件中。")
