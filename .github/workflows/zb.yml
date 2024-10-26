@@ -20,7 +20,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests beautifulsoup4 selenium webdriver-manager
+          pip install selenium webdriver-manager
 
       - name: Run Python script
         run: python zby.py  # 确保脚本名与此处一致
