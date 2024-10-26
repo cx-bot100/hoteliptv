@@ -5,7 +5,8 @@ import re
 # 目标URL列表
 urls = [
     "http://tonkiang.us/?iqtv=%E5%A4%A7%E6%B9%BE%E5%8C%BA%E5%8D%AB%E8%A7%86",
-    "http://tonkiang.us/?iqtv=%E5%A4%A7%E6%B9%BE%E5%8C%BA%E5%8D%AB%E8%A7%86%E9%AB%98%E6%B8%85"
+    "http://tonkiang.us/?iqtv=%E5%A4%A7%E6%B9%BE%E5%8C%BA%E5%8D%AB%E8%A7%86%E9%AB%98%E6%B8%85",
+    "http://tonkiang.us/?iqtv=%E5%B9%BF%E4%B8%9C%E7%8F%A0%E6%B1%9F%E9%AB%98%E6%B8%85" #广东珠江
 ]
 
 # 保存结果的列表
