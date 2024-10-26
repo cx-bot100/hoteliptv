@@ -3,7 +3,7 @@ name: zb
 on:
   schedule:
     - cron: '0 */6 * * *'  # 每6小时运行一次（UTC时间）
-  workflow_dispatch:  # 手动触发
+  workflow_dispatch:  # 允许手动触发
 
 jobs:
   scrape:
@@ -19,7 +19,8 @@ jobs:
           python-version: '3.x'
 
       - name: Install dependencies
-        run: pip install requests beautifulsoup4
+        run: |
+          pip install requests beautifulsoup4 selenium webdriver-manager
 
       - name: Run Python script
         run: python zby.py  # 确保脚本名与此处一致
@@ -27,7 +28,7 @@ jobs:
       - name: Commit and push changes
         run: |
           git config --global user.name 'cx-bot100'
-          git config --global user.email '3206868632@qq.com'
+          git config --global user.email 'actions@github.com'
           git add zblink.txt
           git commit -m "Update zblink.txt with latest validated IPs"
           git push
