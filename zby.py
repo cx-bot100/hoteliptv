@@ -24,7 +24,7 @@ try:
     time.sleep(10)  # 等待页面加载，可以根据网络情况调整等待时间
 
     # 查找包含IP地址的div元素
-    elements = driver.find_elements(By.CLASS_NAME, "hsxa-meta-data-list")
+    elements = driver.find_elements(By.CLASS_NAME, "hsxa-fl hsxa-meta-data-list-lv1-lf")
     for element in elements:
         # 提取div文本内容中的http和https链接
         matches = re.findall(r'http[s]?://[^\s]+', element.text)
