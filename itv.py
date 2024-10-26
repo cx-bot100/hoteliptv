@@ -30,7 +30,7 @@ for url in urls:
         # 提取包含http和https的IP地址并分类
         for div in divs:
             # 获取频道信息
-            channel_div = div.find_previous_sibling('div', class_='channel')
+            channel_div = div.find_previous_sibling('div', class_='tip')
             if channel_div:
                 channel_name = channel_div.get_text().strip()
                 
