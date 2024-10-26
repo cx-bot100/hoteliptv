@@ -20,10 +20,10 @@ try:
     soup = BeautifulSoup(response.text, 'html.parser')
 
     # 查找所有class为'hsxa-host'的span标签
-    spans = soup.find_all('span', class_='hsxa-host')
-    for span in spans:
+    divs = soup.find_all('div', class_='hsxa-fl hsxa-meta-data-list-lv1-lf')
+    for div in divs:
         # 使用正则表达式匹配http或https的链接
-        matches = re.findall(r'http[s]?://[^\s]+', span.get_text())
+        matches = re.findall(r'http[s]?://[^\s]+', div.get_text())
         unique_links.update(matches)
 
 except Exception as e:
@@ -34,7 +34,7 @@ valid_links = []
 
 # 验证每个链接的连接性
 for link in unique_links:
-    test_url = f"{link}/udp/239.77.0.129:5146"
+    test_url = f"{link}/udp/status"
     try:
         # 检查URL是否可访问
         response = requests.get(test_url, headers=headers, timeout=10)
