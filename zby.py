@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import re
 
 # 目标URL
-url = "https://fofa.info/result?qbase64=InVkcHh5IiAmJiByZWdpb249Ikd1YW5nZG9uZyIgJiYgb3JnPSJDaGluYW5ldCI%3D"
+url = "https://fofa.info/result?qbase64=InVkcHh5IiAmJiByZWdpb249Ikd1YW5nZG9uZyI%3D" #广东
 
 # 用于存储不重复的IP地址
 unique_links = set()
