@@ -20,7 +20,7 @@ unique_ips = set()
 # 访问页面
 try:
     driver.get(url)
-    time.sleep(5)  # 等待页面加载，可以根据网络情况调整等待时间
+    time.sleep(20)  # 等待页面加载，可以根据网络情况调整等待时间
 
     # 查找包含IP地址的span元素
     elements = driver.find_elements(By.CLASS_NAME, "hsxa-host")
