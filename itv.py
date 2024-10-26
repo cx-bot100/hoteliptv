@@ -6,7 +6,7 @@ import re
 urls = [
     "http://tonkiang.us/?iqtv=%E5%A4%A7%E6%B9%BE%E5%8C%BA%E5%8D%AB%E8%A7%86",
     "http://tonkiang.us/?iqtv=%E5%A4%A7%E6%B9%BE%E5%8C%BA%E5%8D%AB%E8%A7%86%E9%AB%98%E6%B8%85",
-    "http://tonkiang.us/?iqtv=%E5%B9%BF%E4%B8%9C%E7%8F%A0%E6%B1%9F%E9%AB%98%E6%B8%85" #广东珠江
+    "http://tonkiang.us/?iqtv=%E5%B9%BF%E4%B8%9C%E7%8F%A0%E6%B1%9F%E9%AB%98%E6%B8%85"
 ]
 
 # 保存结果的字典
@@ -50,7 +50,6 @@ for url in urls:
 # 将结果写入key.txt文件
 with open('key.txt', 'w') as file:
     for channel, ips in ip_addresses.items():
-            file.write('地方频道,#genre#\n')
         for ip in ips:
             file.write(f"{channel},{ip}\n")
 
