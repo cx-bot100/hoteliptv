@@ -66,3 +66,9 @@ with open('key.txt', 'w') as file:
             file.write(f"{resultplus},{ip}\n")
 
 print(f"已提取 {sum(len(ips) for ips in ip_addresses.values())} 个IP地址，并保存到key.txt文件中。")
+
+# 将key.txt内容合并到目标文件hlott.txt中
+with open('key.txt', 'r') as ss_file, open('hlott.txt', 'a') as merged_file:
+    merged_file.write(ss_file.read())
+
+print("已将 key.txt 的内容合并到 hlott.txt 文件中。")
