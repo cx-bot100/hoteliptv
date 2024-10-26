@@ -33,7 +33,8 @@ for url in urls:
         print(f"Failed to scrape {url} due to {e}")
 
 # 将结果写入key.txt文件，格式为“大湾区卫视,ip地址”
-with open('key.txt', 'w') as file:
+with open('key.txt', 'w', encoding='utf-8') as file:
+    file.write('地方频道,#genre#\n')
     for ip in ip_addresses:
         file.write(f"大湾区卫视,{ip}\n")
 
