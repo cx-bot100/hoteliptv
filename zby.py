@@ -36,7 +36,7 @@ valid_links = []
 
 # 验证每个链接的连接性
 for link in unique_links:
-    test_url = f"http://{link}/udp/239.77.0.129:5146"
+    test_url = f"http://{link}/udp/status"
     try:
         # 检查URL是否可访问
         response = requests.get(test_url, headers=headers, timeout=10)
