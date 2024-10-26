@@ -30,17 +30,17 @@ for url in urls:
         # 提取包含http和https的IP地址并分类
         for div in divs:
             # 获取频道信息
-            channel_div = div.find_previous_sibling('div', class_='tip')
-            if channel_div:
-                channel_name = channel_div.get_text().strip()
+            tip_div = div.find_previous_sibling('div', class_='tip')
+            if tip_div:
+                tip_name = tip_div.get_text().strip()
                 
                 # 使用正则表达式匹配http或https开头的IP地址
                 matches = re.findall(r'http[s]?://[^\s]+', div.get_text())
                 
                 # 根据频道分类存储IP地址
-                if "大湾区卫视" in channel_name:
+                if "大湾区卫视" in tip_name:
                     ip_addresses["大湾区卫视"].extend(matches)
-                elif "广东珠江高清" in channel_name:
+                elif "广东珠江高清" in tip_name:
                     ip_addresses["广东珠江高清"].extend(matches)
     
     except Exception as e:
@@ -48,8 +48,8 @@ for url in urls:
 
 # 将结果写入key.txt文件
 with open('key.txt', 'w') as file:
-    for channel, ips in ip_addresses.items():
+    for tip, ips in ip_addresses.items():
         for ip in ips:
-            file.write(f"{channel},{ip}\n")
+            file.write(f"{tip},{ip}\n")
 
 print(f"已提取 {sum(len(ips) for ips in ip_addresses.values())} 个IP地址，并保存到key.txt文件中。")
