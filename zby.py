@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import re
 
 # 目标URL
-url = "https://fofa.info/result?qbase64=InVkcHh5IiAmJiByZWdpb249Ikd1YW5nZG9uZyIgJiYgb3JnPSJDaGluYW5ldCI%3D"
+url = "https://fofa.info/result?qbase64=InVkcHh5IiAmJiByZWdpb249Ikd1YW5nZG9uZyIgJiYgb3JnPSJDaGluYW5ldCI%3D" #广东
 
 # 用于存储不重复的IP地址
 unique_ips = set()
@@ -35,7 +35,7 @@ valid_ips = []
 
 # 验证每个IP地址的连接性
 for ip in unique_ips:
-    test_url = f"http://{ip}/udp/239.77.0.129:5146"
+    test_url = f"http://{ip}/status"
     try:
         # 检查URL是否可访问
         response = requests.get(test_url, headers=headers, timeout=10)
