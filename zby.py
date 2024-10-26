@@ -1,55 +1,81 @@
+import time
+import os
+import concurrent.futures
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 import requests
-from bs4 import BeautifulSoup
 import re
 
-# 目标URL
-url = "https://fofa.info/result?qbase64=InVkcHh5IiAmJiByZWdpb249Ikd1YW5nZG9uZyI%3D" #广东
+urls = [
+    "https://fofa.info/result?qbase64=InVkcHh5IiAmJiByZWdpb249Ikd1YW5nZG9uZyI%3D" #广东
+]
 
-# 用于存储不重复的IP地址
-unique_links = set()
-
-# 发起请求
-try:
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
-    }
-    response = requests.get(url, headers=headers)
-    response.encoding = 'utf-8'
-
-    # 解析网页内容
-    soup = BeautifulSoup(response.text, 'html.parser')
-
-    # 查找所有class为'hsxa-host'的span标签
-    spans = soup.find_all('span', class_='hsxa-host')
-    for span in spans:
-        # 使用正则表达式匹配http或https的链接
-        matches = re.findall(r'http[s]?://[^\s]+', span.get_text())
-        unique_links.update(matches)
-
-except Exception as e:
-    print(f"Failed to scrape {url} due to {e}")
-
-# 用于存储验证通过的链接
-valid_links = []
-
-# 验证每个链接的连接性
-for link in unique_links:
-    test_url = f"{link}/status"
+def is_url_accessible(url):
     try:
-        # 检查URL是否可访问
-        response = requests.get(test_url, headers=headers, timeout=10)
-        # 如果响应状态码为200，则表示验证通过
+        response = requests.get(url, timeout=1)
         if response.status_code == 200:
-            valid_links.append(link)
-            print(f"{link} is valid.")
-        else:
-            print(f"{link} returned status code {response.status_code}.")
-    except Exception as e:
-        print(f"Failed to validate {link} due to {e}")
+            return url
+    except requests.exceptions.RequestException:
+        pass
+    return None
 
-# 将结果写入txt文件
-with open('zblink.txt', 'w') as file:
-    for link in valid_links:
-        file.write(f"{link}\n")
+results = []
 
-print(f"已验证 {len(valid_links)} 个链接，并保存到txt文件中。")
+for url in urls:
+    try:
+        # 创建一个Chrome WebDriver实例
+        chrome_options = Options()
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--disable-dev-shm-usage')
+    
+        driver = webdriver.Chrome(options=chrome_options)
+        # 使用WebDriver访问网页
+        driver.get(url)  # 将网址替换为你要访问的网页地址
+        time.sleep(10)
+        # 获取网页内容
+        page_content = driver.page_source
+    
+        # 关闭WebDriver
+        driver.quit()
+    
+        # 查找所有符合指定格式的网址
+        pattern = r"http://\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d+"  # 设置匹配的格式，如http://8.8.8.8:8888
+        urls_all = re.findall(pattern, page_content)
+        # urls = list(set(urls_all))  # 去重得到唯一的URL列表
+        urls = set(urls_all)  # 去重得到唯一的URL列表
+        x_urls = []
+        for url in urls:  # 对urls进行处理，ip第四位修改为1，并去重
+            url = url.strip()
+            ip_start_index = url.find("//") + 2
+            ip_end_index = url.find(":", ip_start_index)
+            ip_dot_start = url.find(".") + 1
+            ip_dot_second = url.find(".", ip_dot_start) + 1
+            ip_dot_three = url.find(".", ip_dot_second) + 1
+            base_url = url[:ip_start_index]  # http:// or https://
+            ip_address = url[ip_start_index:ip_dot_three]
+            port = url[ip_end_index:]
+            ip_end = "1"
+            modified_ip = f"{ip_address}{ip_end}"
+            x_url = f"{base_url}{modified_ip}{port}"
+            x_urls.append(x_url)
+        urls = set(x_urls)  # 去重得到唯一的URL列表
+    
+        valid_urls = []
+        #   多线程获取可用url
+        with concurrent.futures.ThreadPoolExecutor(max_workers=100) as executor:
+            futures = []
+            for url in urls:
+                url = url.strip()
+                modified_urls = modify_urls(url)
+                for modified_url in modified_urls:
+                    futures.append(executor.submit(is_url_accessible, modified_url))
+    
+            for future in concurrent.futures.as_completed(futures):
+                result = future.result()
+                if result:
+                    valid_urls.append(result)
+    
+        for url in valid_urls:
+            print(url)
+
