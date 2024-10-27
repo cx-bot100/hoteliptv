@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 import time
+import re
 
 # 配置Chrome WebDriver
 options = webdriver.ChromeOptions()
@@ -12,22 +13,23 @@ options.add_argument('--disable-dev-shm-usage')
 driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
 
 # 目标URL
-url = "https://fofa.info/result?qbase64=InVkcHh5IiAmJiByZWdpb249Ikd1YW5nZG9uZyI%3D"
+url = "https://fofa.info/result?qbase64=InVkcHh5IiAmJiByZWdpb249Ikd1YW5nZG9uZyIgJiYgb3JnPSJDaGluYW5ldCI%3D"
 
-# 用于存储不重复的IP地址
+# 用于存储不重复的IP地址和端口
 unique_ips = set()
 
 # 访问页面
 try:
     driver.get(url)
-    time.sleep(20)  # 等待页面加载，可以根据网络情况调整等待时间
+    time.sleep(5)  # 等待页面加载，可以根据网络情况调整等待时间
 
-    # 查找包含IP地址的span元素
-    elements = driver.find_elements(By.CLASS_NAME, "hsxa-host")
+    # 查找包含IP地址和端口的元素
+    elements = driver.find_elements(By.XPATH, "//span[@data-clipboard-text]")
     for element in elements:
-        ip_address = element.text.strip()
-        if ip_address:
-            unique_ips.add(ip_address)
+        ip_port = element.get_attribute("data-clipboard-text").strip()
+        # 检查是否是有效的IP:PORT格式
+        if re.match(r'^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d+$', ip_port):
+            unique_ips.add(ip_port)
 
 except Exception as e:
     print(f"Failed to scrape {url} due to {e}")
@@ -40,4 +42,4 @@ with open('zblink.txt', 'w') as file:
     for ip in unique_ips:
         file.write(f"{ip}\n")
 
-print(f"已抓取 {len(unique_ips)} 个IP地址，并保存到zblink.txt文件中。")
+print(f"已抓取 {len(unique_ips)} 个IP地址和端口，并保存到zblink.txt文件中。")
