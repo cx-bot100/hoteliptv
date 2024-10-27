@@ -19,6 +19,7 @@ extracted_content = match.group(1).strip() if match else ""
 
 # 将结果写入 zubo.txt 文件
 with open('zubo.txt', 'w') as file:
+    file.write('地方频道,#genre#\n')
     file.write(extracted_content)
 
 print(f"已提取内容，并保存到zubo.txt文件中。")
