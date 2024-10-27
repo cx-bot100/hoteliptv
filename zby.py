@@ -21,7 +21,7 @@ unique_ips = set()
 # 访问页面
 try:
     driver.get(url)
-    time.sleep(5)  # 等待页面加载，可以根据网络情况调整等待时间
+    time.sleep(20)  # 等待页面加载，可以根据网络情况调整等待时间
 
     # 查找包含IP地址和端口的元素
     elements = driver.find_elements(By.XPATH, "//span[@data-clipboard-text]")
@@ -38,8 +38,8 @@ finally:
     driver.quit()
 
 # 将结果写入zblink.txt文件
-with open('zblink.txt', 'w') as file:
+with open('zbl.txt', 'w') as file:
     for ip in unique_ips:
         file.write(f"{ip}\n")
 
-print(f"已抓取 {len(unique_ips)} 个IP地址和端口，并保存到zblink.txt文件中。")
+print(f"已抓取 {len(unique_ips)} 个IP地址和端口，并保存到zbl.txt文件中。")
