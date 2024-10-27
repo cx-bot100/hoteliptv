@@ -37,7 +37,7 @@ except Exception as e:
 finally:
     driver.quit()
 
-# 将结果写入zblink.txt文件
+# 将结果写入zbl.txt文件
 with open('zbl.txt', 'w') as file:
     for ip in unique_ips:
         file.write(f"{ip}\n")
