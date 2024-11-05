@@ -4,5 +4,5 @@
 
   在看电视直播软件中直接输入以下任一地址即可：
   
-      https://mirror.ghproxy.com/https://raw.githubusercontent.com/cx-bot100/hoteliptv/main/hlott.txt
-      https://raw.githubusercontent.com/cx-bot100/hoteliptv/main/hlott.txt
+      https://mirror.ghproxy.com/https://raw.githubusercontent.com/cx-bot100/hoteliptv/main/itvlist.txt
+      https://raw.githubusercontent.com/cx-bot100/hoteliptv/main/itvlist.txt
