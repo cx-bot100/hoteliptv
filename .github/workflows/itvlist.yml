@@ -30,8 +30,8 @@ jobs:
         
       - name: 提交更改
         run: |
-          git config --local user.email ""
-          git config --local user.name ""
+          git config --local user.email "3206868632@qq.com"
+          git config --local user.name "cx-bot100"
           git add itv_all.txt
           git commit itv_all.txt -m "Add generated file"
           #git pull --rebase
