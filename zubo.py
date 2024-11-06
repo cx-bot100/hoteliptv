@@ -24,7 +24,7 @@ other_channels = []
 
 # 按行分类
 for line in extracted_content.splitlines():
-    if "广东" in line or "卫视" in line:
+    if "广东|广东卫视" in line or "卫视" in line:
         local_channels.append(line)
     elif "CCTV" in line:
         central_channels.append(line)
