@@ -68,7 +68,7 @@ with open('key.txt', 'w') as file:
 print(f"已提取 {sum(len(ips) for ips in ip_addresses.values())} 个IP地址，并保存到key.txt文件中。")
 
 # 将key.txt内容合并到目标文件itvlist.txt中
-with open('key.txt', 'r') as ss_file, open('itvlist.txt', 'a') as merged_file:
+with open('itv.txt', 'r') as ss_file, open('itv.txt', 'a') as merged_file:
     merged_file.write(ss_file.read())
 
-print("已将 key.txt 的内容合并到 itvlist.txt 文件中。")
+print("已将 itv.txt 的内容合并到 itv.txt 文件中。")
