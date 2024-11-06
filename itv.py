@@ -5,19 +5,19 @@ import re
 # 目标URL列表
 urls = [
     "http://tonkiang.us/?iqtv=%E5%A4%A7%E6%B9%BE%E5%8C%BA%E5%8D%AB%E8%A7%86%E9%AB%98%E6%B8%85", #dwq
-    "http://tonkiang.us/?iqtv=%E5%B9%BF%E4%B8%9C%E7%8F%A0%E6%B1%9F%E9%AB%98%E6%B8%85", #gdzj
-    "http://tonkiang.us/?iqtv=%E5%B9%BF%E4%B8%9C%E4%BD%93%E8%82%B2%E9%AB%98%E6%B8%85", #gdty
-    "http://tonkiang.us/?iqtv=%E5%B9%BF%E4%B8%9C%E6%96%B0%E9%97%BB%E9%AB%98%E6%B8%85", #gdxw
-    "http://tonkiang.us/?iqtv=%E5%B9%BF%E4%B8%9C%E5%BD%B1%E8%A7%86%E9%AB%98%E6%B8%85" #gdys
+    "http://tonkiang.us/?iptv=%E5%B9%BF%E4%B8%9C%E7%8F%A0%E6%B1%9F", #gdzj
+    "http://tonkiang.us/?iptv=%E5%B9%BF%E4%B8%9C%E4%BD%93%E8%82%B2", #gdty
+    "http://tonkiang.us/?iptv=%E5%B9%BF%E4%B8%9C%E6%96%B0%E9%97%BB", #gdxw
+    "http://tonkiang.us/?iptv=%E5%B9%BF%E4%B8%9C%E5%BD%B1%E8%A7%86" #gdys
 ]
 
 # 保存结果的字典
 ip_addresses = {
     "大湾区卫视": [],
-    "广东珠江高清": [],
-    "广东体育高清": [],
-    "广东新闻高清": [],
-    "广东影视高清": [],
+    "广东珠江": [],
+    "广东体育": [],
+    "广东新闻": [],
+    "广东影视": [],
 }
 
 # 遍历每个URL
@@ -46,14 +46,14 @@ for url in urls:
                 # 根据频道分类存储IP地址
                 if "大湾区卫视" in resultplus_name:
                     ip_addresses["大湾区卫视"].extend(matches)
-                elif "广东珠江高清" in resultplus_name:
-                    ip_addresses["广东珠江高清"].extend(matches)
-                elif "广东体育高清" in resultplus_name:
-                    ip_addresses["广东体育高清"].extend(matches)
-                elif "广东新闻高清" in resultplus_name:
-                    ip_addresses["广东新闻高清"].extend(matches)
-                elif "广东影视高清" in resultplus_name:
-                    ip_addresses["广东影视高清"].extend(matches)
+                elif "广东珠江" in resultplus_name:
+                    ip_addresses["广东珠江"].extend(matches)
+                elif "广东体育" in resultplus_name:
+                    ip_addresses["广东体育"].extend(matches)
+                elif "广东新闻" in resultplus_name:
+                    ip_addresses["广东新闻"].extend(matches)
+                elif "广东影视" in resultplus_name:
+                    ip_addresses["广东影视"].extend(matches)
     
     except Exception as e:
         print(f"Failed to scrape {url} due to {e}")
@@ -68,7 +68,7 @@ with open('key.txt', 'w') as file:
 print(f"已提取 {sum(len(ips) for ips in ip_addresses.values())} 个IP地址，并保存到key.txt文件中。")
 
 # 将key.txt内容合并到目标文件hlott.txt中
-with open('key.txt', 'r') as ss_file, open('hlott.txt', 'a') as merged_file:
+with open('key.txt', 'r') as ss_file, open('hl.txt', 'a') as merged_file:
     merged_file.write(ss_file.read())
 
-print("已将 key.txt 的内容合并到 hlott.txt 文件中。")
+print("已将 key.txt 的内容合并到 hl.txt 文件中。")
