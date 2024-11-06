@@ -29,6 +29,6 @@ jobs:
       run: |
         git config --local user.name "cx-bot100"
         git config --local user.email "3206868632@qq.com"
-        git add hlott.txt
+        git add key.txt
         git commit -m "Update hlott.txt with latest scrape data"
         git push
