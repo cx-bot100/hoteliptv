@@ -32,7 +32,7 @@ jobs:
         run: |
           git config --local user.email ""
           git config --local user.name ""
-          git add .
+          git add itv_all.txt
           git commit itv_all.txt -m "Add generated file"
           #git pull --rebase
           git push -f
