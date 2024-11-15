@@ -59,16 +59,10 @@ for url in urls:
         print(f"Failed to scrape {url} due to {e}")
 
 # 将结果写入key.txt文件
-with open('key.txt', 'w') as file:
+with open('itv.txt', 'w') as file:
     file.write('地方频道,#genre#\n')
     for resultplus, ips in ip_addresses.items():
         for ip in ips:
             file.write(f"{resultplus},{ip}\n")
 
-print(f"已提取 {sum(len(ips) for ips in ip_addresses.values())} 个IP地址，并保存到key.txt文件中。")
-
-# 将key.txt内容合并到目标文件itvlist.txt中
-with open('itv.txt', 'r') as ss_file, open('itv.txt', 'a') as merged_file:
-    merged_file.write(ss_file.read())
-
-print("已将 itv.txt 的内容合并到 itv.txt 文件中。")
+print(f"已提取 {sum(len(ips) for ips in ip_addresses.values())} 个IP地址，并保存到itv.txt文件中。")
