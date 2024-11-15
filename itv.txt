@@ -1,1 +1,8 @@
-
+地方频道,#genre#
+广东珠江,http://live.cooltv.top/tv/good.php?id=gdzhujiangHD_7500
+广东珠江,http://terrysg.cn:4000/udp/239.77.0.1:5146
+广东体育,http://ct.whosayssowhat.top:4022/udp/239.77.0.112:5146
+广东体育,http://live.cooltv.top/tv/gd.php?id=gdty
+广东新闻,http://live.cooltv.top/tv/gd.php?id=gdxw
+广东新闻,http://terrysg.cn:4000/udp/239.77.0.173:5146
+广东影视,http://live.cooltv.top/tv/gd.php?id=gdys
