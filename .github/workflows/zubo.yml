@@ -23,12 +23,12 @@ jobs:
           pip install requests
 
       - name: Run Python script
-        run: python zubo.py  # 确保脚本名与此处一致
+        run: python itv.py  # 确保脚本名与此处一致
 
       - name: Commit and push changes
         run: |
           git config --global user.name 'cx-bot100'
           git config --global user.email ''
-          git add zubo.txt
+          git add output.txt
           git commit -m "Update zubo.txt with latest extracted content"
           git push
