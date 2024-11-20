@@ -6,9 +6,10 @@ url = "http://foodieguide.com/iptvsearch/hoteliptv.php"
 
 # POST 请求参数
 payload = {
-    '576f4': '广东省',
+    '98024': '广东省',
     'Submit': '+',
-    'town': '52576f44',
+    'names': 'grade-tom',
+    'town': '79980249',
     'ave': 'KuudNuB02s',
     'address': 'grade-v-ca'
 }
