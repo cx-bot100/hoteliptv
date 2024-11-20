@@ -8,7 +8,7 @@ url = "https://www.foodieguide.com/iptvsearch/hoteliptv.php"
 params = {
     'page': 1,
     'net': '广东省',  # 填写具体的参数值
-    'code': ''  # 填写具体的参数值
+    'code': '61331'  # 填写具体的参数值
 }
 
 # 发送 GET 请求
