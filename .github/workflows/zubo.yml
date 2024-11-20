@@ -1,8 +1,8 @@
-name: zubo
+name: ip
 
 on:
   schedule:
-    - cron: '0 20 * * *'  # 每天运行一次（UTC时间）
+    - cron: '0 0 * * *'  # 每天运行一次（UTC时间）
   workflow_dispatch:  # 允许手动触发
 
 jobs:
@@ -23,12 +23,12 @@ jobs:
           pip install requests
 
       - name: Run Python script
-        run: python itv.py  # 确保脚本名与此处一致
+        run: python ips.py  # 确保脚本名与此处一致
 
       - name: Commit and push changes
         run: |
           git config --global user.name 'cx-bot100'
           git config --global user.email ''
-          git add output.txt
-          git commit -m "Update zubo.txt with latest extracted content"
+          git add ips.txt
+          git commit -m "Update ips.txt with latest extracted content"
           git push
