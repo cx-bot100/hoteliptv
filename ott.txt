@@ -60,7 +60,9 @@ CETV-2,http://ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221226425/index.m3u8
 CETV-4,http://ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225783/index.m3u8
 地方频道,#genre#
 大湾区卫视,http://[2409:8087:5e00:24::1e]:6060/200000001898/460000089800010108/1.m3u8
+大湾区卫视,https://stream1.freetv.fun/9e44565ab6186689007a295d8b94b2a970fafde637068b0e3837e5f84689a8f3.ctv
 广东珠江,http://125.89.163.44:8888/udp/239.77.0.1:5146
+广东珠江,https://stream1.freetv.fun/ipv6-yan-dong-zhu-jiang-21.m3u8
 广东新闻,http://125.89.163.44:8888/udp/239.77.0.173:5146
 广东体育,http://125.89.163.44:8888/udp/239.77.0.6:5146
 广东影视,http://125.89.163.44:8888/udp/239.77.0.217:5146
