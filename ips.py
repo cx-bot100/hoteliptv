@@ -1,33 +1,33 @@
 import requests
-import re
+import time
 
-# 目标 URL
-url = "https://www.foodieguide.com/iptvsearch/hoteliptv.php"
+# API的基础URL
+base_url = "http://wifi.tuomengkj.com/Api/flowsearch"
 
-# 设置 GET 请求的参数
-params = {
-    'page': 1,
-    'net': '广东省',  # 填写具体的参数值
-}
+# 定义cardno的起始和结束值
+start_cardno = 13500000
+end_cardno = 13600000
 
-# 发送 GET 请求
-response = requests.get(url, params=params)
-
-# 检查请求是否成功
-if response.status_code == 200:
-    print("GET 请求成功，开始提取 IP 地址...")
-    content = response.text
-
-    # 使用正则表达式提取 IP 地址
-    ip_pattern = re.compile(r'\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b')  # 匹配 IPv4 地址
-    ip_addresses = ip_pattern.findall(content)
-
-    # 去重并保存
-    unique_ips = sorted(set(ip_addresses))
-    with open('ips.txt', 'w', encoding='utf-8') as file:
-        for ip in unique_ips:
-            file.write(ip + '\n')
-
-    print(f"提取完成，共找到 {len(unique_ips)} 个唯一 IP 地址，已保存到 ips.txt 文件中。")
-else:
-    print(f"GET 请求失败，HTTP 状态码: {response.status_code}")
+# 遍历范围内的cardno
+for cardno in range(start_cardno, end_cardno + 1):
+    # 构造完整的URL
+    url = f"{base_url}?cardno={cardno}&sync=1"
+    
+    try:
+        # 发送HTTP GET请求
+        response = requests.get(url)
+        
+        # 检查HTTP状态码是否为200
+        if response.status_code == 200:
+            # 提取响应体并保存为文本文件
+            with open(f"response_{cardno}.txt", "w", encoding="utf-8") as file:
+                file.write(response.text)
+            print(f"成功保存: response_{cardno}.txt")
+        else:
+            print(f"请求失败: cardno={cardno}, 状态码={response.status_code}")
+    
+    except requests.exceptions.RequestException as e:
+        print(f"请求异常: cardno={cardno}, 错误={e}")
+    
+    # 添加延时以避免触发速率限制
+    time.sleep(1)  # 每秒请求一次
